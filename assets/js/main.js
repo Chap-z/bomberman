@@ -42,70 +42,56 @@ function afficherMap() {
 afficherMap();
 
 var bomberman = document.getElementById("bomberman");
+var bomb = document.getElementById("bomb");
+var posBombermanLeft = bomberman.offsetLeft;
+var posBombermanTop = bomberman.offsetTop;
 
 var up = 0;
 var left = 0;
 var time;
 var y;
 
-var bomb = document.getElementById("bomb");
-
 document.addEventListener("keydown", function (e) {
+
     var posBomberman = 0;
-    var x = bomberman.offsetLeft;
-    var y = bomberman.offsetTop;
+    var bombermanLeft = bomberman.offsetLeft;
+    var bombermanTop = bomberman.offsetTop;
     var posBlockLeft = bomberman.offsetLeft / 30;
     var posBlockTop = bomberman.offsetTop / 30;
 
     switch (e.keyCode) {
 
-        case 38:
-            console.log('38');
-            if (posBomberman === 0) {
-                if (up > 0) {
-                    up -= 30;
-                    if (x === posBlockLeft) {
 
-                    }
-                    bomberman.style.top = up + "px";
-                }
+        case 38:
+
+            if (grille[posBlockTop - 1][posBlockLeft] == 1) {
+                bomberman.style.top = (posBlockTop - 1) * 30 + "px";
             }
             break;
 
         case 39:
-            if (posBomberman === 0) {
-
-                if (left < 560) {
-                    left += 30;
-                    bomberman.style.left = left + "px";
-                }
+            if (grille[posBlockTop][posBlockLeft + 1] == 1) {
+                bomberman.style.left = (posBlockLeft + 1) * 30 + "px";
             }
-
             break;
 
         case 40:
-            if (posBomberman === 0) {
-                if (up < 300) {
-                    up += 30;
-                    bomberman.style.top = up + "px";
-                }
+
+            if (grille[posBlockTop + 1][posBlockLeft] == 1) {
+                bomberman.style.top = (posBlockTop +1 ) * 30 + "px";
             }
             break;
 
         case 37:
-            if (posBomberman === 0) {
-
-                if (left > 0) {
-                    left -= 30;
-                    bomberman.style.left = left + "px";
-                }
+            if (grille[posBlockTop][posBlockLeft - 1] == 1) {
+                bomberman.style.left = (posBlockLeft - 1) * 30 + "px";
             }
             break;
 
         case 32:
             if (posBomberman === 0) {
-                bomb.style.left = x + "px";
-                bomb.style.top = y + "px";
+                bomb.style.left = bombermanLeft + "px";
+                bomb.style.top = bombermanTop + "px";
                 bomb.style.display = "block";
                 time = setInterval(posTheBomb, 50);
             }
@@ -119,6 +105,6 @@ function posTheBomb() {
     var bombX = bomb.offsetTop;
     var bombY = bomb.offsetLeft;
 
-    /*     if () */
+ 
 
 }
