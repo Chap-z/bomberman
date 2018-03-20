@@ -24,6 +24,14 @@ main {
     
 }
 
+.wall-destruct{
+    position : absolute;
+    width : 50px;
+    height : 50px;
+    background-image : url('../medias/wall-d.svg');
+    
+}
+
 .explosion{
     position : absolute;
     width : 50px;
@@ -107,3 +115,27 @@ main {
 .tbut{
     text-decoration: none;
 }
+#gameover{
+    position: absolute;
+    display: none;
+    width : 300px;
+    height : 100px;
+    top: 150px;
+    left:250px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:70px;
+    z-index:1000;
+    
+}
+.blink {
+    color:red; 
+    animation: colorblink 0.08s infinite;
+    }
+    @keyframes colorblink { 
+    0% { }
+    25% { color:green; } 
+    25% { color:rgb(38, 0, 255); }
+    10% { color:rgb(255, 255, 255); } 
+    10% { color:rgb(200, 170, 0)}
+    }
+    
