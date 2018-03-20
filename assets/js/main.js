@@ -24,7 +24,7 @@ function afficherMap() {
             console.log(grille[y][x]);
 
             if (grille[y][x] === 2) {
-                
+
                 wall = document.createElement("div");
                 wall.setAttribute("class", "wall");
                 map.appendChild(wall);
@@ -32,7 +32,7 @@ function afficherMap() {
                 wall.style.left = x * 30 + "px";
                 wall.style.backgroundImage = "url('assets/medias/wall.png')";
             } else if (grille[y][x] === 1) {
-                
+
             }
 
 
@@ -46,9 +46,12 @@ var bomb = document.getElementById("bomb");
 var posBombermanLeft = bomberman.offsetLeft;
 var posBombermanTop = bomberman.offsetTop;
 
+
+
 var up = 0;
 var left = 0;
 var time;
+var timeBomb;
 var y;
 
 document.addEventListener("keydown", function (e) {
@@ -78,7 +81,7 @@ document.addEventListener("keydown", function (e) {
         case 40:
 
             if (grille[posBlockTop + 1][posBlockLeft] == 1) {
-                bomberman.style.top = (posBlockTop +1 ) * 30 + "px";
+                bomberman.style.top = (posBlockTop + 1) * 30 + "px";
             }
             break;
 
@@ -92,6 +95,7 @@ document.addEventListener("keydown", function (e) {
             if (posBomberman === 0) {
                 bomb.style.left = bombermanLeft + "px";
                 bomb.style.top = bombermanTop + "px";
+                bomb.style.backgroundImage = "url('assets/medias/bomb.png')";
                 bomb.style.display = "block";
                 time = setInterval(posTheBomb, 50);
             }
@@ -102,10 +106,28 @@ document.addEventListener("keydown", function (e) {
 
 function posTheBomb() {
 
+
+    timeBomb = setInterval(exploseTheBomb, 3000);
+
+    clearInterval(time);
+
+}
+
+
+function exploseTheBomb() {
+    console.log('boum');
+    bomb.style.backgroundImage = "url('assets/medias/explosion.png')";
+    var posBombLeft = bomberman.offsetLeft / 30;
+    var posBombTop = bomberman.offsetTop / 30;
     var bombX = bomb.offsetTop;
     var bombY = bomb.offsetLeft;
 
- 
+
+    if(grille[posBombLeft - 1][bombY] == 2){
+        element.kill();
+    }
+
+    clearInterval(timeBomb);
 
 }
 /****************************************************************************************************** */
@@ -119,26 +141,24 @@ function random() {
     var min = 1;
     var max = 4;
     var dir = Math.floor(Math.random() * Math.floor(max));
- 
+
     console.log(dir);
 
-    if(dir == 0){
+    if (dir == 0) {
         monster.style.left = monster.offsetLeft + 30 + "px";
-    }
-    else if(dir == 1){
+    } else if (dir == 1) {
         monster.style.left = monster.offsetLeft - 30 + "px";
-    }
-    else if(dir == 3){
+    } else if (dir == 3) {
         monster.style.top = monster.offsetTop + 30 + "px";
-    }
-    else if(dir == 2) {
+    } else if (dir == 2) {
         monster.style.top = monster.offsetTop - 30 + "px";
-    }}
+    }
+}
 
 
-setInterval(random,1000);
+setInterval(random, 1000);
 
-  
+
 
 
 /****************************************************************************************************** */
