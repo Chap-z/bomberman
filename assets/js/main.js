@@ -256,7 +256,7 @@ function startTimer(duration, display) {
 
         if (--timer < 0) {
            
-            gameover.style.display = "block";
+            gameover.style.display = "blo ck";
             timer = duration;
         }
     }, 1000);
