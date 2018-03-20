@@ -10,6 +10,9 @@ var grille = [
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 ];
 
+var audio = new Audio('assets/medias/music.mp3');
+    audio.play();
+
 function afficherMap() {
     var x, y = 0;
     var map = document.getElementById('map');
@@ -51,6 +54,8 @@ function afficherMap() {
     }
 }
 afficherMap();
+audio.src = 'assets/medias/music.mp3';
+audio.play();
 
 var bomberman = document.getElementById("bomberman");
 var bomb = document.getElementById("bomb");
@@ -106,7 +111,8 @@ document.addEventListener("keydown", function (e) {
                 bomb.style.backgroundImage = "url('assets/medias/bomb.png')";
                 bomb.style.display = "block";
                 time = setInterval(posTheBomb, 50);
-                
+                var audio = new Audio('assets/medias/bombdrop.wav');
+                audio.play();
             }
             break;
     }
@@ -114,6 +120,32 @@ document.addEventListener("keydown", function (e) {
 
 
 
+function posTheBomb() {
+
+    timeBomb = setInterval(exploseTheBomb, 3000);
+    clearInterval(time);
+
+}
+
+
+function exploseTheBomb() {
+    console.log('boum');
+    bomb.style.backgroundImage = "url('assets/medias/explosion.png')";
+    var posBombLeft = bomb.offsetLeft / 30;
+    var posBombTop = bomb.offsetTop / 30;
+    var bombX = bomb.offsetTop;
+    var bombY = bomb.offsetLeft;
+    var audio2 = new Audio('assets/medias/bombblow.wav');
+    audio2.play();
+
+    
+
+  
+
+
+  
+
+}
 
 
 /****************************************************************************************************** */
