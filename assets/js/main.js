@@ -141,22 +141,26 @@ function random() {
     var min = 1;
     var max = 4;
     var dir = Math.floor(Math.random() * Math.floor(max));
-
+    var posBlockLeft = monster.offsetLeft / 30;
+    var posBlockTop = monster.offsetTop / 30;
     console.log(dir);
 
-    if (dir == 0) {
-        monster.style.left = monster.offsetLeft + 30 + "px";
-    } else if (dir == 1) {
-        monster.style.left = monster.offsetLeft - 30 + "px";
-    } else if (dir == 3) {
-        monster.style.top = monster.offsetTop + 30 + "px";
-    } else if (dir == 2) {
-        monster.style.top = monster.offsetTop - 30 + "px";
+    if(dir == 0){if (grille[posBlockTop][posBlockLeft + 1] == 1){
+        monster.style.left = monster.offsetLeft + 30 + "px";}  //DROITE//
     }
-}
+    else if(dir == 1){if (grille[posBlockTop][posBlockLeft - 1] == 1) {
+        monster.style.left = monster.offsetLeft - 30 + "px";} //GAUCHE//
+    }
+    else if(dir == 3){if (grille[posBlockTop + 1][posBlockLeft] == 1) {
+        monster.style.top = monster.offsetTop + 30 + "px";} //BAS///
+
+    }
+    else if(dir == 2) {if (grille[posBlockTop - 1][posBlockLeft] == 1) {
+        monster.style.top = monster.offsetTop - 30 + "px";} //HAUT//
+    }}
 
 
-setInterval(random, 1000);
+setInterval(random,400);
 
 
 
