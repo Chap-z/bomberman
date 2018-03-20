@@ -1,20 +1,19 @@
 var grille = [
-    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-    [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-    [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2],
-    [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-    [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-    [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-    [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-    [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2],
-    [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-    [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 ];
 
 function afficherMap() {
     var x, y = 0;
-
     var map = document.getElementById('map');
     var wall;
 
@@ -23,6 +22,15 @@ function afficherMap() {
         for (y = 0; y < 11; y++) {
             console.log(grille[y][x]);
 
+            if (grille[y][x] === 3){
+                wall = document.createElement("div");
+                wall.setAttribute("class", "wall");
+                map.appendChild(wall);
+                wall.style.top = y * 30 + "px";
+                wall.style.left = x * 30 + "px";
+                wall.style.backgroundImage = "url('assets/medias/wall.png')"; 
+            }
+
             if (grille[y][x] === 2) {
 
                 wall = document.createElement("div");
@@ -30,12 +38,10 @@ function afficherMap() {
                 map.appendChild(wall);
                 wall.style.top = y * 30 + "px";
                 wall.style.left = x * 30 + "px";
-                wall.style.backgroundImage = "url('assets/medias/wall.png')";
+                wall.style.backgroundImage = "url('assets/medias/ted.png')";
             } else if (grille[y][x] === 1) {
 
             }
-
-
         }
     }
 }
@@ -45,8 +51,6 @@ var bomberman = document.getElementById("bomberman");
 var bomb = document.getElementById("bomb");
 var posBombermanLeft = bomberman.offsetLeft;
 var posBombermanTop = bomberman.offsetTop;
-
-
 
 var up = 0;
 var left = 0;
@@ -63,7 +67,6 @@ document.addEventListener("keydown", function (e) {
     var posBlockTop = bomberman.offsetTop / 30;
 
     switch (e.keyCode) {
-
 
         case 38:
 
@@ -106,9 +109,7 @@ document.addEventListener("keydown", function (e) {
 
 function posTheBomb() {
 
-
     timeBomb = setInterval(exploseTheBomb, 3000);
-
     clearInterval(time);
 
 }
@@ -117,19 +118,20 @@ function posTheBomb() {
 function exploseTheBomb() {
     console.log('boum');
     bomb.style.backgroundImage = "url('assets/medias/explosion.png')";
-    var posBombLeft = bomberman.offsetLeft / 30;
-    var posBombTop = bomberman.offsetTop / 30;
+    var posBombLeft = bomb.offsetLeft / 30;
+    var posBombTop = bomb.offsetTop / 30;
     var bombX = bomb.offsetTop;
     var bombY = bomb.offsetLeft;
 
 
-    if(grille[posBombLeft - 1][bombY] == 2){
+    if(grille[posBombLeft - 1][bombY] == 3){
         element.kill();
     }
 
     clearInterval(timeBomb);
 
 }
+
 /****************************************************************************************************** */
 
 
