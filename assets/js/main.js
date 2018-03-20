@@ -255,13 +255,15 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
+           
+            gameover.style.display = "block";
             timer = duration;
         }
     }, 1000);
 }
 
 window.onload = function () {
-    var fiveMinutes = 60 * 5,
+    var fiveMinutes = 60*5;
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
 };
