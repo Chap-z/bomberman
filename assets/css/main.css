@@ -1,146 +1,147 @@
-
 body {
-    margin : auto;
+    margin: auto;
     background-color: #CFBDA8;
 }
 
 main {
-    margin : auto;
-
+    margin: auto;
 }
-h1{
-    text-align : center;
+
+h1 {
+    text-align: center;
     animation: colorblink 0.08s infinite;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 #map {
-    position : relative;
-    width : 700px;
-    height : 500px;
-    margin : auto;
-
+    position: relative;
+    width: 700px;
+    height: 500px;
+    margin: auto;
 }
 
-.wall{
-    position : absolute;
-    width : 50px;
-    height : 50px;
-    background-image : url('../medias/wall-d.svg');
-    
+.wall {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('../medias/wall-d.svg');
 }
 
-.wall-destruct{
-    position : absolute;
-    width : 50px;
-    height : 50px;
-    background-image : url('../medias/wall-d.svg');
-    
+.wall-destruct {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('../medias/wall-d.svg');
 }
 
-.explosion{
-    position : absolute;
-    width : 50px;
-    height : 50px;
-    
+.explosion {
+    position: absolute;
+    width: 50px;
+    height: 50px;
 }
 
-
-.floor{
-    position : absolute;
-    width : 50px;
-    height : 50px;
-    z-index : -10;
+.floor {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: -10;
 }
 
 #bomb {
-    position : absolute;
-    background-image : url('../medias/bomb.svg');
-    display : none;
-    width : 50px;
-    height : 50px;
+    position: absolute;
+    background-image: url('../medias/bomb.svg');
+    display: none;
+    width: 50px;
+    height: 50px;
 }
 
 #bomberman {
-    position : absolute;
-    width : 50px;
-    height : 50px;
-    background-image : url('../medias/bomberman.svg');
-    top : 50px;
-    left : 50px;
-} 
-
-#monster{
-    position : absolute;
-    background-image : url('../medias/monster.svg');
-    width : 50px;
-    height : 50px;
-    top : 100px;
-    left : 100px; 
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('../medias/bomberman.svg');
+    top: 50px;
+    left: 50px;
 }
 
-.timer{
-    
-    position : absolute;
-    /* width : 30px;
-    height : 30px; */
-    top : 10px;
-    left : 10px;
-    color:red;
-    z-index:100;
+#monster {
+    position: absolute;
+    background-image: url('../medias/monster.svg');
+    width: 50px;
+    height: 50px;
+    top: 100px;
+    left: 100px;
+}
+
+.timer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: red;
+    z-index: 100;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
-
 }
 
-
-.panel{ 
+.panel {
     justify-content: center;
-    height: 50rem;
-    width: 50rem;
-    background-image: url('../medias/panel.jpg');
+    width: 700px;
+    height: 85vh;
+    background-image: url(../medias/panel.jpg);
+    background-size: cover;
     background-repeat: no-repeat;
     margin: auto;
     text-align: center;
     align-content: center;
-    padding-top: 25%;
-  
+    display: flex;
+    margin-top: 50px;
 }
 
-.butt{
-    width:8rem;
-    height: 4rem;
+.butt {
+    padding : 10px 20px; 
     font-size: 1.5rem;
     text-decoration: none !important;
     font-weight: bolder;
     background-color: beige;
     border: 5px solid;
     border-color: pink;
+    margin : auto;
 }
 
-.tbut{
+.tbut {
     text-decoration: none;
+    align-self: center;
+    margin-top : 200px;
 }
-#gameover{
+
+#gameover {
     position: absolute;
     display: none;
-    width : 300px;
-    height : 100px;
+    width: 300px;
+    height: 100px;
     top: 150px;
-    left:250px;
+    left: 250px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size:70px;
-    z-index:1000;
-    
+    font-size: 70px;
+    z-index: 1000;
 }
+
 .blink {
-    color:red; 
+    color: red;
     animation: colorblink 0.08s infinite;
+}
+
+@keyframes colorblink {
+    0% {}
+    25% {
+        color: green;
     }
-    @keyframes colorblink { 
-    0% { }
-    25% { color:green; } 
-    25% { color:rgb(38, 0, 255); }
-    10% { color:rgb(255, 255, 255); } 
-    10% { color:rgb(200, 170, 0)}
+    25% {
+        color: rgb(38, 0, 255);
     }
-    
+    10% {
+        color: rgb(255, 255, 255);
+    }
+    10% {
+        color: rgb(200, 170, 0)
+    }
+}
