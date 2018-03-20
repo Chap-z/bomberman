@@ -1,25 +1,26 @@
 var grille = [
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 ];
+
+var audio = new Audio('assets/medias/music.mp3');
+    audio.play();
 
 function afficherMap() {
     var x, y = 0;
     var map = document.getElementById('map');
     var wall;
+    var floor;
+    for (x = 0; x < 14; x++) {
 
-    for (x = 0; x < 19; x++) {
-
-        for (y = 0; y < 11; y++) {
+        for (y = 0; y < 9; y++) {
             console.log(grille[y][x]);
 
             if (grille[y][x] === 3){
@@ -38,14 +39,23 @@ function afficherMap() {
                 map.appendChild(wall);
                 wall.style.top = y * 30 + "px";
                 wall.style.left = x * 30 + "px";
-                wall.style.backgroundImage = "url('assets/medias/ted.png')";
+                wall.style.backgroundImage = "url('assets/medias/wall-d.png')";
+               
             } else if (grille[y][x] === 1) {
 
+                floor = document.createElement("div");
+                floor.setAttribute("class", "floor");
+                map.appendChild(floor);
+                floor.style.top = y * 30 + "px";
+                floor.style.left = x * 30 + "px";
+                floor.style.backgroundImage = "url('assets/medias/floor.jpg')";
             }
         }
     }
 }
 afficherMap();
+audio.src = 'assets/medias/music.mp3';
+audio.play();
 
 var bomberman = document.getElementById("bomberman");
 var bomb = document.getElementById("bomb");
@@ -101,10 +111,13 @@ document.addEventListener("keydown", function (e) {
                 bomb.style.backgroundImage = "url('assets/medias/bomb.png')";
                 bomb.style.display = "block";
                 time = setInterval(posTheBomb, 50);
+                var audio = new Audio('assets/medias/bombdrop.wav');
+                audio.play();
             }
             break;
     }
 });
+
 
 
 function posTheBomb() {
@@ -122,15 +135,18 @@ function exploseTheBomb() {
     var posBombTop = bomb.offsetTop / 30;
     var bombX = bomb.offsetTop;
     var bombY = bomb.offsetLeft;
+    var audio2 = new Audio('assets/medias/bombblow.wav');
+    audio2.play();
+
+    
+
+  
 
 
-    if(grille[posBombLeft - 1][bombY] == 3){
-        element.kill();
-    }
-
-    clearInterval(timeBomb);
+  
 
 }
+
 
 /****************************************************************************************************** */
 
