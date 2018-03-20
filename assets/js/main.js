@@ -1,25 +1,23 @@
 var grille = [
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 ];
 
 function afficherMap() {
     var x, y = 0;
     var map = document.getElementById('map');
     var wall;
+    var floor;
+    for (x = 0; x < 14; x++) {
 
-    for (x = 0; x < 19; x++) {
-
-        for (y = 0; y < 11; y++) {
+        for (y = 0; y < 9; y++) {
             console.log(grille[y][x]);
 
             if (grille[y][x] === 3){
@@ -38,9 +36,16 @@ function afficherMap() {
                 map.appendChild(wall);
                 wall.style.top = y * 30 + "px";
                 wall.style.left = x * 30 + "px";
-                wall.style.backgroundImage = "url('assets/medias/ted.png')";
+                wall.style.backgroundImage = "url('assets/medias/wall-d.png')";
+               
             } else if (grille[y][x] === 1) {
 
+                floor = document.createElement("div");
+                floor.setAttribute("class", "floor");
+                map.appendChild(floor);
+                floor.style.top = y * 30 + "px";
+                floor.style.left = x * 30 + "px";
+                floor.style.backgroundImage = "url('assets/medias/floor.jpg')";
             }
         }
     }
@@ -101,36 +106,15 @@ document.addEventListener("keydown", function (e) {
                 bomb.style.backgroundImage = "url('assets/medias/bomb.png')";
                 bomb.style.display = "block";
                 time = setInterval(posTheBomb, 50);
+                
             }
             break;
     }
 });
 
 
-function posTheBomb() {
-
-    timeBomb = setInterval(exploseTheBomb, 3000);
-    clearInterval(time);
-
-}
 
 
-function exploseTheBomb() {
-    console.log('boum');
-    bomb.style.backgroundImage = "url('assets/medias/explosion.png')";
-    var posBombLeft = bomb.offsetLeft / 30;
-    var posBombTop = bomb.offsetTop / 30;
-    var bombX = bomb.offsetTop;
-    var bombY = bomb.offsetLeft;
-
-
-    if(grille[posBombLeft - 1][bombY] == 3){
-        element.kill();
-    }
-
-    clearInterval(timeBomb);
-
-}
 
 /****************************************************************************************************** */
 
