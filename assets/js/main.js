@@ -245,7 +245,7 @@ setInterval(random, 400);
 function startTimer(duration, display) {
     var timer = duration,
         minutes, seconds;
-    setInterval(function () {
+        refreshIntervalId = setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
 
@@ -257,7 +257,8 @@ function startTimer(duration, display) {
         if (--timer < 0) {
            
             gameover.style.display = "block";
-            timer = duration;
+            clearInterval(refreshIntervalId);
+            //timer = duration;
         }
     }, 1000);
 }
