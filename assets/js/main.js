@@ -148,9 +148,6 @@ function exploseTheBomb() {
 
 
 var monster = document.getElementById("monster");
-
-
-
 function random() {
     var min = 1;
     var max = 4;
