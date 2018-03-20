@@ -22,7 +22,6 @@ function afficherMap() {
     for (x = 0; x < 14; x++) {
 
         for (y = 0; y < 10; y++) {
-            console.log(grille[y][x]);
 
             if (grille[y][x] === 3) {
                 wall = document.createElement("div");
@@ -107,12 +106,16 @@ document.addEventListener("keydown", function (e) {
 
         case 32:
             if (posBomberman === 0) {
+                
                 bomb.style.left = bombermanLeft + "px";
                 bomb.style.top = bombermanTop + "px";
                 bomb.style.backgroundImage = "url('assets/medias/bomb.svg')";
                 bomb.style.display = "block";
+
+                var explosion;
                 var audio = new Audio('assets/medias/bombdrop.wav');
                 audio.play();
+
                 setTimeout(exploseTheBomb, 3000);
                 setTimeout(suppexplosion, 5000);
 
@@ -123,28 +126,67 @@ document.addEventListener("keydown", function (e) {
 
 function suppexplosion() {
     bomb.style.display = "none";
+    explosion.style.display = "none";
 }
-
-/* 
-
-function posTheBomb() {
-
-
-    clearInterval(time);
-
-}
- */
 
 function exploseTheBomb() {
-    console.log('boum');
-    bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
     var posBombLeft = bomb.offsetLeft / 50;
     var posBombTop = bomb.offsetTop / 50;
-    var bombX = bomb.offsetTop;
-    var bombY = bomb.offsetLeft;
+    var x, y = 0;
+    var map = document.getElementById('map');
     var audio2 = new Audio('assets/medias/bombblow.wav');
     audio2.play();
 
+    if (grille[posBombTop - 1][posBombLeft] == 2 || grille[posBombTop - 1][posBombLeft] == 1) {
+
+        explosion = document.createElement("div");
+        explosion.setAttribute("class", "explosion");
+        map.appendChild(explosion);
+        explosion.style.top = (posBombTop - 1) * 50 + "px";
+        explosion.style.left = posBombLeft * 50 + "px";
+        bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
+        explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
+
+    }
+
+    if (grille[posBombTop + 1][posBombLeft] == 2 || grille[posBombTop + 1][posBombLeft] == 1) {
+
+        explosion = document.createElement("div");
+        explosion.setAttribute("class", "explosion");
+        map.appendChild(explosion);
+        explosion.style.top = (posBombTop + 1) * 50 + "px";
+        explosion.style.left = posBombLeft * 50 + "px";
+        bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
+        explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
+
+    }
+
+    if (grille[posBombTop][posBombLeft + 1] == 2 || grille[posBombTop][posBombLeft + 1] == 1) {
+
+        explosion = document.createElement("div");
+        explosion.setAttribute("class", "explosion");
+        map.appendChild(explosion);
+        explosion.style.top = posBombTop * 50 + "px";
+        explosion.style.left = (posBombLeft + 1) * 50 + "px";
+        bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
+        explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
+
+    }
+
+    if (grille[posBombTop][posBombLeft - 1] == 2 || grille[posBombTop][posBombLeft - 1] == 1) {
+
+        explosion = document.createElement("div");
+        explosion.setAttribute("class", "explosion");
+        map.appendChild(explosion);
+        explosion.style.top = posBombTop * 50 + "px";
+        explosion.style.left = (posBombLeft - 1) * 50 + "px";
+        bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
+        explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
+
+
+    } else {
+        bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
+    }
 
     
 
@@ -163,7 +205,6 @@ function random() {
     var dir = Math.floor(Math.random() * Math.floor(max));
     var posBlockLeft = monster.offsetLeft / 50;
     var posBlockTop = monster.offsetTop / 50;
-    console.log(dir);
 
     if (dir == 0) {
         if (grille[posBlockTop][posBlockLeft + 1] == 1) {
