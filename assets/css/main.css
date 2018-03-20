@@ -24,6 +24,14 @@ main {
     
 }
 
+.wall-destruct{
+    position : absolute;
+    width : 50px;
+    height : 50px;
+    background-image : url('../medias/wall-d.svg');
+    
+}
+
 .explosion{
     position : absolute;
     width : 50px;
