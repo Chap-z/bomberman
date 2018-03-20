@@ -12,7 +12,7 @@ var grille = [
 ];
 
 var audio = new Audio('assets/medias/music.mp3');
-    audio.play();
+audio.play();
 
 function afficherMap() {
     var x, y = 0;
@@ -24,13 +24,13 @@ function afficherMap() {
         for (y = 0; y < 10; y++) {
             console.log(grille[y][x]);
 
-            if (grille[y][x] === 3){
+            if (grille[y][x] === 3) {
                 wall = document.createElement("div");
                 wall.setAttribute("class", "wall");
                 map.appendChild(wall);
                 wall.style.top = y * 30 + "px";
                 wall.style.left = x * 30 + "px";
-                wall.style.backgroundImage = "url('assets/medias/wall.png')"; 
+                wall.style.backgroundImage = "url('assets/medias/wall.png')";
             }
 
             if (grille[y][x] === 2) {
@@ -41,7 +41,7 @@ function afficherMap() {
                 wall.style.top = y * 30 + "px";
                 wall.style.left = x * 30 + "px";
                 wall.style.backgroundImage = "url('assets/medias/wall-d.png')";
-               
+
             } else if (grille[y][x] === 1) {
 
                 floor = document.createElement("div");
@@ -111,23 +111,29 @@ document.addEventListener("keydown", function (e) {
                 bomb.style.top = bombermanTop + "px";
                 bomb.style.backgroundImage = "url('assets/medias/bomb.png')";
                 bomb.style.display = "block";
-                time = setInterval(posTheBomb, 50);
                 var audio = new Audio('assets/medias/bombdrop.wav');
                 audio.play();
+                setTimeout(exploseTheBomb, 3000);
+                setTimeout(suppexplosion, 5000);
+
             }
             break;
     }
 });
 
+function suppexplosion() {
+    bomb.style.display = "none";
+}
 
+/* 
 
 function posTheBomb() {
 
-    timeBomb = setTimeout(exploseTheBomb, 3000);
+
     clearInterval(time);
 
 }
-
+ */
 
 function exploseTheBomb() {
     console.log('boum');
@@ -149,6 +155,7 @@ function exploseTheBomb() {
 
 
 var monster = document.getElementById("monster");
+
 function random() {
     var min = 1;
     var max = 4;
@@ -157,29 +164,36 @@ function random() {
     var posBlockTop = monster.offsetTop / 30;
     console.log(dir);
 
-    if(dir == 0){if (grille[posBlockTop][posBlockLeft + 1] == 1){
-        monster.style.left = monster.offsetLeft + 30 + "px";}  //DROITE//
-    }
-    else if(dir == 1){if (grille[posBlockTop][posBlockLeft - 1] == 1) {
-        monster.style.left = monster.offsetLeft - 30 + "px";} //GAUCHE//
-    }
-    else if(dir == 3){if (grille[posBlockTop + 1][posBlockLeft] == 1) {
-        monster.style.top = monster.offsetTop + 30 + "px";} //BAS///
+    if (dir == 0) {
+        if (grille[posBlockTop][posBlockLeft + 1] == 1) {
+            monster.style.left = monster.offsetLeft + 30 + "px";
+        } //DROITE//
+    } else if (dir == 1) {
+        if (grille[posBlockTop][posBlockLeft - 1] == 1) {
+            monster.style.left = monster.offsetLeft - 30 + "px";
+        } //GAUCHE//
+    } else if (dir == 3) {
+        if (grille[posBlockTop + 1][posBlockLeft] == 1) {
+            monster.style.top = monster.offsetTop + 30 + "px";
+        } //BAS///
 
+    } else if (dir == 2) {
+        if (grille[posBlockTop - 1][posBlockLeft] == 1) {
+            monster.style.top = monster.offsetTop - 30 + "px";
+        } //HAUT//
     }
-    else if(dir == 2) {if (grille[posBlockTop - 1][posBlockLeft] == 1) {
-        monster.style.top = monster.offsetTop - 30 + "px";} //HAUT//
-    }}
+}
 
 
-setInterval(random,400);
+setInterval(random, 400);
 
 
 
 
 /****************************************************************************************************** */
 function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
+    var timer = duration,
+        minutes, seconds;
     setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
