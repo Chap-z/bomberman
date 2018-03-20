@@ -12,10 +12,16 @@ var grille = [
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 ];
 
+var audio = new Audio('assets/medias/music.mp3');
+    audio.play();
+
 function afficherMap() {
     var x, y = 0;
     var map = document.getElementById('map');
     var wall;
+    
+    
+    
 
     for (x = 0; x < 19; x++) {
 
@@ -40,12 +46,14 @@ function afficherMap() {
                 wall.style.left = x * 30 + "px";
                 wall.style.backgroundImage = "url('assets/medias/ted.png')";
             } else if (grille[y][x] === 1) {
-
+                
             }
         }
     }
 }
 afficherMap();
+audio.src = 'assets/medias/music.mp3';
+audio.play();
 
 var bomberman = document.getElementById("bomberman");
 var bomb = document.getElementById("bomb");
@@ -101,10 +109,13 @@ document.addEventListener("keydown", function (e) {
                 bomb.style.backgroundImage = "url('assets/medias/bomb.png')";
                 bomb.style.display = "block";
                 time = setInterval(posTheBomb, 50);
+                var audio = new Audio('assets/medias/bombdrop.wav');
+                audio.play();
             }
             break;
     }
 });
+
 
 
 function posTheBomb() {
@@ -122,15 +133,18 @@ function exploseTheBomb() {
     var posBombTop = bomb.offsetTop / 30;
     var bombX = bomb.offsetTop;
     var bombY = bomb.offsetLeft;
+    var audio2 = new Audio('assets/medias/bombblow.wav');
+    audio2.play();
+
+    
+
+  
 
 
-    if(grille[posBombLeft - 1][bombY] == 3){
-        element.kill();
-    }
-
-    clearInterval(timeBomb);
+  
 
 }
+
 
 /****************************************************************************************************** */
 
