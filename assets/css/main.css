@@ -1,13 +1,18 @@
 
 body {
-    margin : 0;
+    margin : auto;
+    background-color: #CFBDA8;
 }
 
 main {
     margin : auto;
 
 }
-
+h1{
+    text-align : center;
+    animation: colorblink 0.08s infinite;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 #map {
     position : relative;
     width : 700px;
@@ -85,6 +90,35 @@ main {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 
+}
+
+
+.panel{ 
+    justify-content: center;
+    height: 50rem;
+    width: 50rem;
+    background-image: url('../medias/panel.jpg');
+    background-repeat: no-repeat;
+    margin: auto;
+    text-align: center;
+    align-content: center;
+    padding-top: 25%;
+  
+}
+
+.butt{
+    width:8rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    text-decoration: none !important;
+    font-weight: bolder;
+    background-color: beige;
+    border: 5px solid;
+    border-color: pink;
+}
+
+.tbut{
+    text-decoration: none;
 }
 #gameover{
     position: absolute;
