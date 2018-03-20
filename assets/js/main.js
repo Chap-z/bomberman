@@ -24,7 +24,7 @@ function afficherMap() {
             console.log(grille[y][x]);
 
             if (grille[y][x] === 2) {
-                console.log("c'est deux");
+                
                 wall = document.createElement("div");
                 wall.setAttribute("class", "wall");
                 map.appendChild(wall);
@@ -32,7 +32,7 @@ function afficherMap() {
                 wall.style.left = x * 30 + "px";
                 wall.style.backgroundImage = "url('assets/medias/wall.png')";
             } else if (grille[y][x] === 1) {
-                console.log("c'est 1");
+                
             }
 
 
@@ -122,3 +122,37 @@ function posTheBomb() {
     /*     if () */
 
 }
+/****************************************************************************************************** */
+
+
+var monster = document.getElementById("monster");
+
+
+
+function random() {
+    var min = 1;
+    var max = 4;
+    var dir = Math.floor(Math.random() * Math.floor(max));
+ 
+    console.log(dir);
+
+    if(dir == 0){
+        monster.style.left = monster.offsetLeft + 30 + "px";
+    }
+    else if(dir == 1){
+        monster.style.left = monster.offsetLeft - 30 + "px";
+    }
+    else if(dir == 3){
+        monster.style.top = monster.offsetTop + 30 + "px";
+    }
+    else if(dir == 2) {
+        monster.style.top = monster.offsetTop - 30 + "px";
+    }}
+
+
+setInterval(random,1000);
+
+  
+
+
+/****************************************************************************************************** */
