@@ -21,7 +21,7 @@ function afficherMap() {
     var floor;
     for (x = 0; x < 14; x++) {
 
-        for (y = 0; y < 9; y++) {
+        for (y = 0; y < 10; y++) {
             console.log(grille[y][x]);
 
             if (grille[y][x] === 3){
