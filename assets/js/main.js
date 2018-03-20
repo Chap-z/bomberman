@@ -28,9 +28,9 @@ function afficherMap() {
                 wall = document.createElement("div");
                 wall.setAttribute("class", "wall");
                 map.appendChild(wall);
-                wall.style.top = y * 30 + "px";
-                wall.style.left = x * 30 + "px";
-                wall.style.backgroundImage = "url('assets/medias/wall.png')";
+                wall.style.top = y * 50 + "px";
+                wall.style.left = x * 50 + "px";
+                wall.style.backgroundImage = "url('assets/medias/wall.svg')";
             }
 
             if (grille[y][x] === 2) {
@@ -38,18 +38,18 @@ function afficherMap() {
                 wall = document.createElement("div");
                 wall.setAttribute("class", "wall");
                 map.appendChild(wall);
-                wall.style.top = y * 30 + "px";
-                wall.style.left = x * 30 + "px";
-                wall.style.backgroundImage = "url('assets/medias/wall-d.png')";
+                wall.style.top = y * 50 + "px";
+                wall.style.left = x * 50 + "px";
+                wall.style.backgroundImage = "url('assets/medias/wall-d.svg')";
 
             } else if (grille[y][x] === 1) {
 
                 floor = document.createElement("div");
                 floor.setAttribute("class", "floor");
                 map.appendChild(floor);
-                floor.style.top = y * 30 + "px";
-                floor.style.left = x * 30 + "px";
-                floor.style.backgroundImage = "url('assets/medias/floor.jpg')";
+                floor.style.top = y * 50 + "px";
+                floor.style.left = x * 50 + "px";
+                floor.style.backgroundImage = "url('assets/medias/floor.svg')";
             }
         }
     }
@@ -74,34 +74,34 @@ document.addEventListener("keydown", function (e) {
     var posBomberman = 0;
     var bombermanLeft = bomberman.offsetLeft;
     var bombermanTop = bomberman.offsetTop;
-    var posBlockLeft = bomberman.offsetLeft / 30;
-    var posBlockTop = bomberman.offsetTop / 30;
+    var posBlockLeft = bomberman.offsetLeft / 50;
+    var posBlockTop = bomberman.offsetTop / 50;
 
     switch (e.keyCode) {
 
         case 38:
 
             if (grille[posBlockTop - 1][posBlockLeft] == 1) {
-                bomberman.style.top = (posBlockTop - 1) * 30 + "px";
+                bomberman.style.top = (posBlockTop - 1) * 50 + "px";
             }
             break;
 
         case 39:
             if (grille[posBlockTop][posBlockLeft + 1] == 1) {
-                bomberman.style.left = (posBlockLeft + 1) * 30 + "px";
+                bomberman.style.left = (posBlockLeft + 1) * 50 + "px";
             }
             break;
 
         case 40:
 
             if (grille[posBlockTop + 1][posBlockLeft] == 1) {
-                bomberman.style.top = (posBlockTop + 1) * 30 + "px";
+                bomberman.style.top = (posBlockTop + 1) * 50 + "px";
             }
             break;
 
         case 37:
             if (grille[posBlockTop][posBlockLeft - 1] == 1) {
-                bomberman.style.left = (posBlockLeft - 1) * 30 + "px";
+                bomberman.style.left = (posBlockLeft - 1) * 50 + "px";
             }
             break;
 
@@ -109,7 +109,7 @@ document.addEventListener("keydown", function (e) {
             if (posBomberman === 0) {
                 bomb.style.left = bombermanLeft + "px";
                 bomb.style.top = bombermanTop + "px";
-                bomb.style.backgroundImage = "url('assets/medias/bomb.png')";
+                bomb.style.backgroundImage = "url('assets/medias/bomb.svg')";
                 bomb.style.display = "block";
                 var audio = new Audio('assets/medias/bombdrop.wav');
                 audio.play();
@@ -137,9 +137,9 @@ function posTheBomb() {
 
 function exploseTheBomb() {
     console.log('boum');
-    bomb.style.backgroundImage = "url('assets/medias/explosion.png')";
-    var posBombLeft = bomb.offsetLeft / 30;
-    var posBombTop = bomb.offsetTop / 30;
+    bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
+    var posBombLeft = bomb.offsetLeft / 50;
+    var posBombTop = bomb.offsetTop / 50;
     var bombX = bomb.offsetTop;
     var bombY = bomb.offsetLeft;
     var audio2 = new Audio('assets/medias/bombblow.wav');
@@ -161,26 +161,26 @@ function random() {
     var min = 1;
     var max = 4;
     var dir = Math.floor(Math.random() * Math.floor(max));
-    var posBlockLeft = monster.offsetLeft / 30;
-    var posBlockTop = monster.offsetTop / 30;
+    var posBlockLeft = monster.offsetLeft / 50;
+    var posBlockTop = monster.offsetTop / 50;
     console.log(dir);
 
     if (dir == 0) {
         if (grille[posBlockTop][posBlockLeft + 1] == 1) {
-            monster.style.left = monster.offsetLeft + 30 + "px";
+            monster.style.left = monster.offsetLeft + 50 + "px";
         } //DROITE//
     } else if (dir == 1) {
         if (grille[posBlockTop][posBlockLeft - 1] == 1) {
-            monster.style.left = monster.offsetLeft - 30 + "px";
+            monster.style.left = monster.offsetLeft - 50 + "px";
         } //GAUCHE//
     } else if (dir == 3) {
         if (grille[posBlockTop + 1][posBlockLeft] == 1) {
-            monster.style.top = monster.offsetTop + 30 + "px";
+            monster.style.top = monster.offsetTop + 50 + "px";
         } //BAS///
 
     } else if (dir == 2) {
         if (grille[posBlockTop - 1][posBlockLeft] == 1) {
-            monster.style.top = monster.offsetTop - 30 + "px";
+            monster.style.top = monster.offsetTop - 50 + "px";
         } //HAUT//
     }
 }
