@@ -122,7 +122,7 @@ document.addEventListener("keydown", function (e) {
 
 function posTheBomb() {
 
-    timeBomb = setInterval(exploseTheBomb, 3000);
+    timeBomb = setTimeout(exploseTheBomb, 3000);
     clearInterval(time);
 
 }
@@ -138,12 +138,8 @@ function exploseTheBomb() {
     var audio2 = new Audio('assets/medias/bombblow.wav');
     audio2.play();
 
-    
-
-  
 
 
-  
 
 }
 
