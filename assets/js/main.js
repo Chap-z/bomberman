@@ -2,6 +2,7 @@ const map = document.getElementById('map');
 const bomberman = document.getElementById("bomberman");
 const bomb = document.getElementById("bomb");
 const monster = document.getElementById("monster");
+const wallDestruct = document.getElementsByClassName("wall-destruct");
 const posBombermanLeft = bomberman.offsetLeft;
 const posBombermanTop = bomberman.offsetTop;
 
@@ -89,12 +90,14 @@ document.addEventListener("keydown", function (e) {
 
             if (grille[posBlockTop - 1][posBlockLeft] == 1) {
                 bomberman.style.top = (posBlockTop - 1) * 50 + "px";
+                bomberman.style.backgroundImage = "url('./assets/medias/bombermanup.svg')";
             }
             break;
 
         case 39:
             if (grille[posBlockTop][posBlockLeft + 1] == 1) {
                 bomberman.style.left = (posBlockLeft + 1) * 50 + "px";
+                bomberman.style.backgroundImage = "url('./assets/medias/bombermanright.svg')";
             }
             break;
 
@@ -102,12 +105,14 @@ document.addEventListener("keydown", function (e) {
 
             if (grille[posBlockTop + 1][posBlockLeft] == 1) {
                 bomberman.style.top = (posBlockTop + 1) * 50 + "px";
+                bomberman.style.backgroundImage = "url('./assets/medias/bomberman.svg')";
             }
             break;
 
         case 37:
             if (grille[posBlockTop][posBlockLeft - 1] == 1) {
                 bomberman.style.left = (posBlockLeft - 1) * 50 + "px";
+                bomberman.style.backgroundImage = "url('./assets/medias/bombermanleft.svg')";
             }
             break;
 
@@ -123,7 +128,7 @@ document.addEventListener("keydown", function (e) {
 
                 setTimeout(exploseTheBomb, 3000);
                 setTimeout(suppexplosion, 4000);
-
+              
             }
             break;
     }
@@ -148,6 +153,12 @@ function exploseTheBomb() {
     var explosion;
     var audio2 = new Audio('assets/medias/bombblow.wav');
 
+    var posMonsterLeft = monster.offsetLeft / 50;
+    var posMonsterTop = monster.offsetTop / 50;
+
+    /*    var explodLeft = bomb.offsetLeft;
+       var explodRight = bomb.offsetTop; */
+
     audio2.play();
 
     if (grille[posBombTop - 1][posBombLeft] == 2 || grille[posBombTop - 1][posBombLeft] == 1) {
@@ -160,6 +171,8 @@ function exploseTheBomb() {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
 
+        breakMonster(explosion);
+        
     }
 
     if (grille[posBombTop + 1][posBombLeft] == 2 || grille[posBombTop + 1][posBombLeft] == 1) {
@@ -171,6 +184,8 @@ function exploseTheBomb() {
         explosion.style.left = posBombLeft * 50 + "px";
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
+        breakMonster(explosion);
+       
 
     }
 
@@ -183,6 +198,9 @@ function exploseTheBomb() {
         explosion.style.left = (posBombLeft + 1) * 50 + "px";
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
+        breakMonster(explosion);
+       
+
     }
 
     if (grille[posBombTop][posBombLeft - 1] == 2 || grille[posBombTop][posBombLeft - 1] == 1) {
@@ -194,15 +212,63 @@ function exploseTheBomb() {
         explosion.style.left = (posBombLeft - 1) * 50 + "px";
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
+        breakMonster(explosion);
+        
+
 
     } else {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
+
     }
 }
 
+
+function breakMonster(explosion) {
+    var posMonsterLeft = monster.offsetLeft;
+    var posMonsterTop = monster.offsetTop;
+    var posBombLeft = bomb.offsetLeft;
+    var posBombTop = bomb.offsetTop;
+    var explosionLeft = explosion.offsetLeft;
+
+    var element = document.getElementsByClassName('explosion');
+    for (var i = element.length - 1; i >= 0; i--) {
+
+        if ((posBombLeft === posMonsterLeft) && (posBombTop === posMonsterTop)) {
+
+            monster.style.display = "none";
+
+        } else if ((explosion.offsetTop === posMonsterTop) && (explosion.offsetLeft === posMonsterLeft)) {
+
+            monster.style.display = "none";
+
+        }
+    }
+}
+
+/* function breakBlock(explosion) {
+    var posBombLeft = bomb.offsetLeft;
+    var posBombTop = bomb.offsetTop;
+    var explosionLeft = explosion.offsetLeft;
+    var explosionTop = explosion.offsetTop;
     
+    console.log(explosionLeft);
 
+    var element = document.getElementsByClassName('wall-destruct');
 
+    for (var i = element.length - 1; i >= 0; i--) {
+
+        if ((posBombLeft === wallDestruct.offsetLeft) && (posBombTop === wallDestruct.offsetTop)) {
+
+            wallDestruct.style.display = "none";
+
+        } else if ((explosion.offsetTop === wallDestruct.offsetTop) && (explosion.offsetLeft === wallDestruct.offsetLeft)) {
+
+            wallDestruct.style.display = "none";
+
+        }
+    }
+}
+ */
 /****************************************************************************************************** */
 
 
@@ -236,7 +302,7 @@ function random() {
 }
 
 
-setInterval(random, 400);
+setInterval(random, 150000);
 
 
 
@@ -245,7 +311,7 @@ setInterval(random, 400);
 function startTimer(duration, display) {
     var timer = duration,
         minutes, seconds;
-        refreshIntervalId = setInterval(function () {
+    refreshIntervalId = setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
 
@@ -255,7 +321,7 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-           
+
             gameover.style.display = "block";
             clearInterval(refreshIntervalId);
             //timer = duration;
@@ -264,8 +330,8 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var fiveMinutes = 60*5;
-        display = document.querySelector('#time');
+    var fiveMinutes = 60 * 5;
+    display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
 };
 /********************************************************************************************************* */
