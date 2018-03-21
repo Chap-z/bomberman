@@ -62,6 +62,7 @@ h1 {
     background-image : url('../medias/bomberman.svg');
     top : 50px;
     left : 50px;
+    z-index : 400;
 } 
 
 #monster{
