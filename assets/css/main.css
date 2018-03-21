@@ -85,7 +85,7 @@ h1 {
 
 #monster {
     position: absolute;
-    background-image: url('../medias/monster.svg');
+    background-image: url('../medias/monsterdown.svg');
     width: 50px;
     height: 50px;
     top: 100px;
@@ -143,11 +143,18 @@ h1 {
     font-size: 70px;
     z-index: 1000;
 }
-
+.lifebar{
+    z-index: 10000;
+    position: absolute;
+    bottom: 6px;
+    left: 5px;
+}
 .blink {
     color: red;
     animation: colorblink 0.08s infinite;
 }
+
+
 
 @keyframes colorblink {
     0% {}
