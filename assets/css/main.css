@@ -85,7 +85,7 @@ h1 {
 .panel {
     justify-content: center;
     width: 700px;
-    height: 85vh;
+    height: 500px;
     background-image: url(../medias/panel.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -97,20 +97,20 @@ h1 {
 }
 
 .butt {
-    padding : 10px 20px; 
+    padding: 10px 20px;
     font-size: 1.5rem;
     text-decoration: none !important;
     font-weight: bolder;
     background-color: beige;
     border: 5px solid;
     border-color: pink;
-    margin : auto;
+    margin: auto;
 }
 
 .tbut {
     text-decoration: none;
     align-self: center;
-    margin-top : 200px;
+    margin-top: 200px;
 }
 
 #gameover {
