@@ -74,6 +74,11 @@ h1 {
     left : 100px; 
 }
 
+.replay{
+    font-size: 30px;
+    font-weight: bolder;
+}
+
 .timer{
     
     position : absolute;

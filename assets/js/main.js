@@ -77,7 +77,7 @@ afficherMap();
 
 audio.src = 'assets/medias/music.mp3';
 audio.play();
-
+var controlActive = true
 document.addEventListener("keydown", function (e) {
 
     var posBomberman = 0;
@@ -85,7 +85,7 @@ document.addEventListener("keydown", function (e) {
     var bombermanTop = bomberman.offsetTop;
     var posBlockLeft = bomberman.offsetLeft / 50;
     var posBlockTop = bomberman.offsetTop / 50;
-
+    if (controlActive){
     switch (e.keyCode) {
 
         case 38:
@@ -133,6 +133,7 @@ document.addEventListener("keydown", function (e) {
 
             }
             break;
+        }      
     }
 });
 
@@ -318,7 +319,7 @@ function random() {
 }
 
 
-setInterval(random, 200);
+setInterval(random, 1000);
 
 
 
@@ -351,3 +352,35 @@ window.onload = function () {
     startTimer(fiveMinutes, display);
 };
 /********************************************************************************************************* */
+    var lifeCount = 3;
+    var audio5 = new Audio('assets/medias/gameover.mp3');
+    
+function touchMonster(e){
+    var posBombermanLeft = bomberman.offsetLeft/50;
+     var posBombermanTop = bomberman.offsetTop/50;
+    var posMonsterLeft = monster.offsetLeft/50;
+    var posMonsterTop = monster.offsetTop/50;
+    var audio4 = new Audio('assets/medias/hurt.wav');
+   
+
+    if ( posBombermanTop == posMonsterTop && posBombermanLeft  ==  posMonsterLeft){
+        lifeCount = lifeCount -1;
+        console.log(lifeCount);
+        document.getElementsByClassName('heart'+ lifeCount)[0].style.display="none";
+        audio4.play();
+    }
+
+    if (lifeCount == 0){
+        gameover.style.display = "block";
+            clearInterval(refreshIntervalId);
+            controlActive = false;
+            clearInterval(intervalTouch);
+            audio.pause();
+            audio5.play();
+
+
+    }
+
+    
+}
+var intervalTouch = setInterval(touchMonster,200);
