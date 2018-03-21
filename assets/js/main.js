@@ -89,12 +89,14 @@ document.addEventListener("keydown", function (e) {
 
             if (grille[posBlockTop - 1][posBlockLeft] == 1) {
                 bomberman.style.top = (posBlockTop - 1) * 50 + "px";
+                bomberman.style.backgroundImage = "url('./assets/medias/bombermanup.svg')";
             }
             break;
 
         case 39:
             if (grille[posBlockTop][posBlockLeft + 1] == 1) {
                 bomberman.style.left = (posBlockLeft + 1) * 50 + "px";
+                bomberman.style.backgroundImage = "url('./assets/medias/bombermanright.svg')";
             }
             break;
 
@@ -102,12 +104,14 @@ document.addEventListener("keydown", function (e) {
 
             if (grille[posBlockTop + 1][posBlockLeft] == 1) {
                 bomberman.style.top = (posBlockTop + 1) * 50 + "px";
+                bomberman.style.backgroundImage = "url('./assets/medias/bomberman.svg')";
             }
             break;
 
         case 37:
             if (grille[posBlockTop][posBlockLeft - 1] == 1) {
                 bomberman.style.left = (posBlockLeft - 1) * 50 + "px";
+                bomberman.style.backgroundImage = "url('./assets/medias/bombermanleft.svg')";
             }
             break;
 
@@ -123,7 +127,7 @@ document.addEventListener("keydown", function (e) {
 
                 setTimeout(exploseTheBomb, 3000);
                 setTimeout(suppexplosion, 4000);
-
+              
             }
             break;
     }
