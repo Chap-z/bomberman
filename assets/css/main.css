@@ -56,7 +56,6 @@ h1 {
 }
 
 #bomberman {
-<<<<<<< HEAD
     position : absolute;
     width : 50px;
     height : 50px;
@@ -82,16 +81,7 @@ h1 {
     color:red;
     z-index:100;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
-=======
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background-image: url('../medias/bomberman.svg');
-    top: 50px;
-    left: 50px;
 }
->>>>>>> 09fbfa16905e977af3c55398938cfdf4f21269bf
 
 #monster {
     position: absolute;
