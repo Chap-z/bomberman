@@ -13,7 +13,6 @@ var time;
 var timeBomb;
 var y;
 
-
 var grille = [
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
     [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
@@ -57,6 +56,8 @@ function afficherMap() {
                 wallDestruct.style.top = y * 50 + "px";
                 wallDestruct.style.left = x * 50 + "px";
                 wallDestruct.style.backgroundImage = "url('assets/medias/wall-d.svg')";
+
+
 
             } else if (grille[y][x] === 1) {
 
@@ -128,7 +129,7 @@ document.addEventListener("keydown", function (e) {
 
                 setTimeout(exploseTheBomb, 3000);
                 setTimeout(suppexplosion, 4000);
-              
+
             }
             break;
     }
@@ -145,7 +146,7 @@ function suppexplosion() {
 
 }
 
-function exploseTheBomb() {
+function exploseTheBomb(wallDestruct) {
 
     var posBombLeft = bomb.offsetLeft / 50;
     var posBombTop = bomb.offsetTop / 50;
@@ -172,7 +173,7 @@ function exploseTheBomb() {
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
 
         breakMonster(explosion);
-        
+        breakBlock(explosion);
     }
 
     if (grille[posBombTop + 1][posBombLeft] == 2 || grille[posBombTop + 1][posBombLeft] == 1) {
@@ -185,8 +186,7 @@ function exploseTheBomb() {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
         breakMonster(explosion);
-       
-
+        breakBlock(explosion);
     }
 
     if (grille[posBombTop][posBombLeft + 1] == 2 || grille[posBombTop][posBombLeft + 1] == 1) {
@@ -199,8 +199,7 @@ function exploseTheBomb() {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
         breakMonster(explosion);
-       
-
+        breakBlock(explosion);
     }
 
     if (grille[posBombTop][posBombLeft - 1] == 2 || grille[posBombTop][posBombLeft - 1] == 1) {
@@ -213,7 +212,7 @@ function exploseTheBomb() {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
         breakMonster(explosion);
-        
+        breakBlock(explosion);
 
 
     } else {
@@ -245,30 +244,32 @@ function breakMonster(explosion) {
     }
 }
 
-/* function breakBlock(explosion) {
-    var posBombLeft = bomb.offsetLeft;
-    var posBombTop = bomb.offsetTop;
-    var explosionLeft = explosion.offsetLeft;
-    var explosionTop = explosion.offsetTop;
-    
-    console.log(explosionLeft);
+function breakBlock(explosion) {
+
 
     var element = document.getElementsByClassName('wall-destruct');
+    var wallDestructLeft = 0;
+    var wallDestructTop = 0;
+
+
 
     for (var i = element.length - 1; i >= 0; i--) {
 
-        if ((posBombLeft === wallDestruct.offsetLeft) && (posBombTop === wallDestruct.offsetTop)) {
+        wallDestructLeft = element[i].offsetLeft;
+        wallDestructTop = element[i].offsetTop;
 
-            wallDestruct.style.display = "none";
+        console.log(explosion.offsetTop);
 
-        } else if ((explosion.offsetTop === wallDestruct.offsetTop) && (explosion.offsetLeft === wallDestruct.offsetLeft)) {
+        if ((explosion.offsetTop == wallDestructTop) && (explosion.offsetLeft == wallDestructLeft)) {
 
-            wallDestruct.style.display = "none";
+            element[i].style.backgroundImage = "url('assets/medias/floor.svg')";
+            console.log(explosion.offsetTop);
+            console.log(wallDestructTop);
 
         }
     }
 }
- */
+
 /****************************************************************************************************** */
 
 
