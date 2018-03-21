@@ -2,6 +2,7 @@ const map = document.getElementById('map');
 const bomberman = document.getElementById("bomberman");
 const bomb = document.getElementById("bomb");
 const monster = document.getElementById("monster");
+const wallDestruct = document.getElementsByClassName("wall-destruct");
 const posBombermanLeft = bomberman.offsetLeft;
 const posBombermanTop = bomberman.offsetTop;
 
@@ -167,6 +168,7 @@ function exploseTheBomb() {
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
 
         breakMonster(explosion);
+        
     }
 
     if (grille[posBombTop + 1][posBombLeft] == 2 || grille[posBombTop + 1][posBombLeft] == 1) {
@@ -179,6 +181,8 @@ function exploseTheBomb() {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
         breakMonster(explosion);
+       
+
     }
 
     if (grille[posBombTop][posBombLeft + 1] == 2 || grille[posBombTop][posBombLeft + 1] == 1) {
@@ -191,6 +195,8 @@ function exploseTheBomb() {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
         breakMonster(explosion);
+       
+
     }
 
     if (grille[posBombTop][posBombLeft - 1] == 2 || grille[posBombTop][posBombLeft - 1] == 1) {
@@ -203,6 +209,8 @@ function exploseTheBomb() {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
         explosion.style.backgroundImage = "url('assets/medias/explosion.svg')";
         breakMonster(explosion);
+        
+
 
     } else {
         bomb.style.backgroundImage = "url('assets/medias/explosion.svg')";
@@ -219,7 +227,6 @@ function breakMonster(explosion) {
     var explosionLeft = explosion.offsetLeft;
 
     var element = document.getElementsByClassName('explosion');
-    console.log(explosion);
     for (var i = element.length - 1; i >= 0; i--) {
 
         if ((posBombLeft === posMonsterLeft) && (posBombTop === posMonsterTop)) {
@@ -234,6 +241,30 @@ function breakMonster(explosion) {
     }
 }
 
+/* function breakBlock(explosion) {
+    var posBombLeft = bomb.offsetLeft;
+    var posBombTop = bomb.offsetTop;
+    var explosionLeft = explosion.offsetLeft;
+    var explosionTop = explosion.offsetTop;
+    
+    console.log(explosionLeft);
+
+    var element = document.getElementsByClassName('wall-destruct');
+
+    for (var i = element.length - 1; i >= 0; i--) {
+
+        if ((posBombLeft === wallDestruct.offsetLeft) && (posBombTop === wallDestruct.offsetTop)) {
+
+            wallDestruct.style.display = "none";
+
+        } else if ((explosion.offsetTop === wallDestruct.offsetTop) && (explosion.offsetLeft === wallDestruct.offsetLeft)) {
+
+            wallDestruct.style.display = "none";
+
+        }
+    }
+}
+ */
 /****************************************************************************************************** */
 
 
