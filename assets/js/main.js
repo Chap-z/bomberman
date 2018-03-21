@@ -370,10 +370,12 @@ function touchMonster(e){
     if (lifeCount == 0){
         gameover.style.display = "block";
             clearInterval(refreshIntervalId);
+            bomberman.style.backgroundImage = "url('./assets/medias/bombermandead.svg')";
             controlActive = false;
             clearInterval(intervalTouch);
             audio.pause();
             audio5.play();
+
 
 
     }
