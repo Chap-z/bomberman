@@ -12,17 +12,18 @@ var left = 0;
 var time;
 var timeBomb;
 var y;
+var lifecount = 3;
 
 var grille = [
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3],
     [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 3, 1, 2, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3],
+    [3, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3],
     [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3],
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 ];
 
@@ -228,6 +229,8 @@ function breakMonster(explosion) {
     var posBombLeft = bomb.offsetLeft;
     var posBombTop = bomb.offsetTop;
     var explosionLeft = explosion.offsetLeft;
+    var audio3 = new Audio('assets/medias/enemydie.wav');
+
 
     var element = document.getElementsByClassName('explosion');
     for (var i = element.length - 1; i >= 0; i--) {
@@ -235,10 +238,12 @@ function breakMonster(explosion) {
         if ((posBombLeft === posMonsterLeft) && (posBombTop === posMonsterTop)) {
 
             monster.style.display = "none";
+            audio3.play();
 
         } else if ((explosion.offsetTop === posMonsterTop) && (explosion.offsetLeft === posMonsterLeft)) {
-
+            
             monster.style.display = "none";
+            
 
         }
     }
@@ -285,25 +290,32 @@ function random() {
     if (dir == 0) {
         if (grille[posBlockTop][posBlockLeft + 1] == 1) {
             monster.style.left = monster.offsetLeft + 50 + "px";
+            monster.style.backgroundImage = "url('./assets/medias/monsterright.svg')";
+
         } //DROITE//
     } else if (dir == 1) {
         if (grille[posBlockTop][posBlockLeft - 1] == 1) {
             monster.style.left = monster.offsetLeft - 50 + "px";
+            monster.style.backgroundImage = "url('./assets/medias/monsterleft.svg')";
+            
+
         } //GAUCHE//
     } else if (dir == 3) {
         if (grille[posBlockTop + 1][posBlockLeft] == 1) {
             monster.style.top = monster.offsetTop + 50 + "px";
+            monster.style.backgroundImage = "url('./assets/medias/monsterdown.svg')";
         } //BAS///
 
     } else if (dir == 2) {
         if (grille[posBlockTop - 1][posBlockLeft] == 1) {
             monster.style.top = monster.offsetTop - 50 + "px";
+            monster.style.backgroundImage = "url('./assets/medias/monsterup.svg')";
         } //HAUT//
     }
 }
 
 
-setInterval(random, 150000);
+setInterval(random, 200);
 
 
 
