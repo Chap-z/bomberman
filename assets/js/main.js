@@ -18,7 +18,7 @@ var grille = [
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
     [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 3, 1, 1, 3],
     [3, 1, 1, 1, 3, 1, 2, 3, 2, 1, 3, 1, 1, 3],
-    [3, 1, 2, 1, 3, 1, 1, 1, 2, 1, 2, 2, 1, 3],
+    [3, 1, 2, 1, 3, 1, 1, 1, 2, 1, 1, 1, 1, 3],
     [3, 2, 3, 2, 2, 1, 1, 1, 2, 1, 1, 1, 1, 3],
     [3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 3],
     [3, 1, 3, 1, 3, 1, 2, 1, 3, 1, 1, 1, 1, 3],
@@ -231,7 +231,7 @@ function breakMonster(explosion) {
     var posBombTop = bomb.offsetTop;
     var explosionLeft = explosion.offsetLeft;
     var audio3 = new Audio('assets/medias/enemydie.wav');
-
+    var audio6 = new Audio('assets/medias/win.mp3');
 
     var element = document.getElementsByClassName('explosion');
     for (var i = element.length - 1; i >= 0; i--) {
@@ -240,10 +240,21 @@ function breakMonster(explosion) {
 
             monster.style.display = "none";
             audio3.play();
+            gamewin.style.display = "block";
+            clearInterval(refreshIntervalId);
+            audio.pause();
+            audio6.play();
+
+           
 
         } else if ((explosion.offsetTop === posMonsterTop) && (explosion.offsetLeft === posMonsterLeft)) {
 
             monster.style.display = "none";
+            audio3.play();
+            gamewin.style.display = "block";
+            clearInterval(refreshIntervalId);
+            audio.pause();
+            audio6.play();
 
 
         }
