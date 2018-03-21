@@ -22,7 +22,7 @@ var grille = [
     [3, 1, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3],
     [3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3],
     [3, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
+    [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3],
     [3, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3],
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 ];
@@ -242,9 +242,9 @@ function breakMonster(explosion) {
             audio3.play();
 
         } else if ((explosion.offsetTop === posMonsterTop) && (explosion.offsetLeft === posMonsterLeft)) {
-            
+
             monster.style.display = "none";
-            
+
 
         }
     }
@@ -257,20 +257,23 @@ function breakBlock(explosion) {
     var wallDestructLeft = 0;
     var wallDestructTop = 0;
 
-
-
     for (var i = element.length - 1; i >= 0; i--) {
 
-        wallDestructLeft = element[i].offsetLeft;
-        wallDestructTop = element[i].offsetTop;
+        wallDestructLeft = element[i].offsetLeft / 50;
+        wallDestructTop = element[i].offsetTop / 50;
 
         console.log(explosion.offsetTop);
 
-        if ((explosion.offsetTop == wallDestructTop) && (explosion.offsetLeft == wallDestructLeft)) {
+        if ((explosion.offsetTop / 50 == wallDestructTop) && (explosion.offsetLeft / 50 == wallDestructLeft)) {
 
             element[i].style.backgroundImage = "url('assets/medias/floor.svg')";
-            console.log(explosion.offsetTop);
-            console.log(wallDestructTop);
+                console.log(explosion.offsetTop);
+                console.log(wallDestructTop);
+
+              if (grille[wallDestructTop][wallDestructLeft] == 2) {
+                grille[wallDestructTop][wallDestructLeft] = 1;
+                afficherMap();
+            } 
 
         }
     }
@@ -298,7 +301,7 @@ function random() {
         if (grille[posBlockTop][posBlockLeft - 1] == 1) {
             monster.style.left = monster.offsetLeft - 50 + "px";
             monster.style.backgroundImage = "url('./assets/medias/monsterleft.svg')";
-            
+
 
         } //GAUCHE//
     } else if (dir == 3) {
