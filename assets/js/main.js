@@ -46,7 +46,7 @@ function afficherMap() {
                 map.appendChild(wall);
                 wall.style.top = y * 50 + "px";
                 wall.style.left = x * 50 + "px";
-                wall.style.backgroundImage = "url('assets/medias/wall.svg')";
+                wall.style.backgroundImage = "url('assets/medias/cloud.svg')";
             }
 
             if (grille[y][x] === 2) {
@@ -56,7 +56,7 @@ function afficherMap() {
                 map.appendChild(wallDestruct);
                 wallDestruct.style.top = y * 50 + "px";
                 wallDestruct.style.left = x * 50 + "px";
-                wallDestruct.style.backgroundImage = "url('assets/medias/wall-d.svg')";
+                wallDestruct.style.backgroundImage = "url('assets/medias/rocher.svg')";
 
 
 
@@ -67,7 +67,7 @@ function afficherMap() {
                 map.appendChild(floor);
                 floor.style.top = y * 50 + "px";
                 floor.style.left = x * 50 + "px";
-                floor.style.backgroundImage = "url('assets/medias/floor.svg')";
+                floor.style.backgroundImage = "url('assets/medias/grass.svg')";
             }
         }
     }
@@ -266,7 +266,7 @@ function breakBlock(explosion) {
 
         if ((explosion.offsetTop / 50 == wallDestructTop) && (explosion.offsetLeft / 50 == wallDestructLeft)) {
 
-            element[i].style.backgroundImage = "url('assets/medias/floor.svg')";
+            element[i].style.backgroundImage = "url('assets/medias/grass.svg')";
                 console.log(explosion.offsetTop);
                 console.log(wallDestructTop);
 
